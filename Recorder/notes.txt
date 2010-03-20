@@ -1,0 +1,32 @@
+API reference:
+
+http://www.go-mono.com/docs/
+
+How to create a Tab view controller (video tutorial):
+
+http://www.codesnack.com/blog/2009/11/2/uitableviewcontroller-uitvc-template-updated-for-uitableview.html
+
+About dialogs:
+
+http://www.infoq.com/news/2010/02/MonoTouch-Dialog
+
+Adding a button action:
+
+http://monotouch.net/Tutorials/MonoDevelop_HelloWorld
+
+Subclassing a view controller:
+
+http://wiki.monotouch.net/HowTo/Creating_and_using_View_Controller_from_another_Interface_Builder_file_in_Main_View
+
+http://www.knowing.net/index.php/monotouch-custom-viewcontroller-adding-stepwise-subviews/
+
+Shortcomings
+--------------
+
+* How to create a new view outside MainWindow.xib and use it as a contents of the tab in MainWindow?
+
+* How to set background of view to iPhoneish instead of blank white?
+
+http://github.com/migueldeicaza/monotouch-samples/blob/46b5ba6050fa1c4768fa35ec94e3dcd90b6b171b/monocatalog/searchbar.cs
+
+* 
