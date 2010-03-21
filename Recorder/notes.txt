@@ -10,6 +10,10 @@ API reference
 
 http://www.go-mono.com/docs/
 
+UI
+
+* http://www.go-mono.com/docs/monodoc.ashx?tlink=20@N%3aMonoTouch.UIKit
+
 How tos
 ---------
 
@@ -31,6 +35,8 @@ Adding a button action:
 
 Subclassing a view controller:
 
+* http://www.alexyork.net/blog/post/UINavigationController-with-MonoTouch-Building-a-simple-RSS-reader-Part-2.aspx
+
 * http://wiki.monotouch.net/HowTo/Creating_and_using_View_Controller_from_another_Interface_Builder_file_in_Main_View
 
 * http://www.knowing.net/index.php/monotouch-custom-viewcontroller-adding-stepwise-subviews/
@@ -49,6 +55,17 @@ Timers
 
 * http://matt-greer.com/blog/2009/10/sub-millisecond-precision-with-nstimer-and-monotouch/
 
+Action sheet
+-------------
+
+Dialog with buttons how to proceed, slides up from the bottom of the screen.
+
+* http://www.zouak.com/?p=274
+
+* http://www.go-mono.com/docs/index.aspx?tlink=20@N%3aMonoTouch.UIKit
+
+* http://stackoverflow.com/questions/1197746/uiactionsheet-cancel-button-strange-behaviour
+
 Listing folder
 ----------------
 
@@ -58,6 +75,11 @@ Handling NSError
 -----------------
 
 * http://www.conceptdevelopment.net/iPhone/MapKit01/Main.cs.htm
+
+Formatting number strings
+--------------------------
+
+* http://www.geekpedia.com/KB10_How-can-I-format-a-number-to-x-decimal-places.html
 
 Shortcomings
 --------------
@@ -69,3 +91,5 @@ Shortcomings
 http://github.com/migueldeicaza/monotouch-samples/blob/46b5ba6050fa1c4768fa35ec94e3dcd90b6b171b/monocatalog/searchbar.cs
 
 * AVAudioPlayer.PrepareRecording fails, returns false, without error explanation if the filename is bad
+
+* Passing data to a child view when the view is initialized - is public member variable best practice?

@@ -19,5 +19,25 @@ namespace Recorder
 		{
 			this.fi = fi;
 		}
+		
+		public string GetName()
+		{
+			return this.fi.Name;
+		}
+		
+		public double GetLength()
+		{
+			return 0.0;
+		}
+		
+		public long GetSize()
+		{
+			return this.fi.Length;
+		}
+		
+		public void Delete()
+		{
+			this.fi.Delete();
+		}
 	}
 }

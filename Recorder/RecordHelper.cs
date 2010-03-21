@@ -34,7 +34,7 @@ namespace Recorder
 		
 		public delegate void UpdateStatus(double seconds, float peakPower);
 
-		public delegate void Finish();
+		public delegate void Finish(bool save);
 		
 		// Set this externally to received status updates
 		public UpdateStatus updateStatus;
@@ -146,7 +146,7 @@ namespace Recorder
 			
 			if(finish != null)
 			{
-				finish();
+				finish(save);
 			}
 			Console.WriteLine("Recording ended");
         }

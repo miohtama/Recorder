@@ -74,9 +74,16 @@
     <Compile Include="Record.cs" />
     <Compile Include="RecordViewController.cs" />
     <Compile Include="RecordHelper.cs" />
+    <Compile Include="DetailsViewController.xib.cs">
+      <DependentUpon>DetailsViewController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsViewController.xib.designer.cs">
+      <DependentUpon>DetailsViewController.xib</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
+    <Page Include="DetailsViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -27,6 +27,16 @@ namespace Recorder {
 		
 		private MonoTouch.UIKit.UILabel __mt_timeLabel;
 		
+		private MonoTouch.UIKit.UINavigationController __mt_navigationController;
+		
+		private RecordTableViewController __mt_recordTVC;
+		
+		private RecordViewController __mt_recordViewController;
+		
+		private MonoTouch.UIKit.UITableView __mt_recordTableView;
+		
+		private MonoTouch.UIKit.UITabBar __mt_tabBar;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("window")]
 		private MonoTouch.UIKit.UIWindow window {
@@ -97,6 +107,66 @@ namespace Recorder {
 			set {
 				this.__mt_timeLabel = value;
 				this.SetNativeField("timeLabel", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("navigationController")]
+		private MonoTouch.UIKit.UINavigationController navigationController {
+			get {
+				this.__mt_navigationController = ((MonoTouch.UIKit.UINavigationController)(this.GetNativeField("navigationController")));
+				return this.__mt_navigationController;
+			}
+			set {
+				this.__mt_navigationController = value;
+				this.SetNativeField("navigationController", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("recordTVC")]
+		private RecordTableViewController recordTVC {
+			get {
+				this.__mt_recordTVC = ((RecordTableViewController)(this.GetNativeField("recordTVC")));
+				return this.__mt_recordTVC;
+			}
+			set {
+				this.__mt_recordTVC = value;
+				this.SetNativeField("recordTVC", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("recordViewController")]
+		private RecordViewController recordViewController {
+			get {
+				this.__mt_recordViewController = ((RecordViewController)(this.GetNativeField("recordViewController")));
+				return this.__mt_recordViewController;
+			}
+			set {
+				this.__mt_recordViewController = value;
+				this.SetNativeField("recordViewController", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("recordTableView")]
+		private MonoTouch.UIKit.UITableView recordTableView {
+			get {
+				this.__mt_recordTableView = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("recordTableView")));
+				return this.__mt_recordTableView;
+			}
+			set {
+				this.__mt_recordTableView = value;
+				this.SetNativeField("recordTableView", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("tabBar")]
+		private MonoTouch.UIKit.UITabBar tabBar {
+			get {
+				this.__mt_tabBar = ((MonoTouch.UIKit.UITabBar)(this.GetNativeField("tabBar")));
+				return this.__mt_tabBar;
+			}
+			set {
+				this.__mt_tabBar = value;
+				this.SetNativeField("tabBar", value);
 			}
 		}
 	}

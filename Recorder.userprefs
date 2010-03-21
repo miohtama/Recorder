@@ -1,14 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Recorder/RecordTableViewController.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Recorder/Main.cs" ctype="Workbench">
     <Files>
-      <File FileName="Recorder/Main.cs" Line="25" Column="29" />
-      <File FileName="Recorder/RecordTableViewController.cs" Line="1" Column="4" />
+      <File FileName="Recorder/notes.txt" Line="35" Column="1" />
+      <File FileName="Recorder/Main.cs" Line="45" Column="33" />
+      <File FileName="Recorder/RecordTableViewController.cs" Line="20" Column="3" />
+      <File FileName="Recorder/RecordHistory.cs" Line="71" Column="4" />
+      <File FileName="Recorder/Record.cs" Line="16" Column="14" />
+      <File FileName="Recorder/RecoredView.xib.cs" Line="1" Column="1" />
+      <File FileName="Recorder/RecordHelper.cs" Line="184" Column="36" />
+      <File FileName="Assembly Browser" />
+      <File FileName="Recorder/RecordViewController.cs" Line="6" Column="1" />
+      <File FileName="Recorder/DetailsViewController.xib.cs" Line="8" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="Recorder" expanded="True" />
+        <State expanded="True">
+          <Node name="Recorder" expanded="True">
+            <Node name="Main.cs" selected="True" />
+            <Node name="MainWindow.xib" expanded="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

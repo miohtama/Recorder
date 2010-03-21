@@ -19,6 +19,11 @@ namespace Recorder
 		
 		static string FILENAME_BASE = "record";
 
+		public delegate void ContentChanged(RecordHistory history);
+		
+		// Event handler when history has been edited
+		public ContentChanged contentChanged;
+		
 		public RecordHistory ()
 		{
 			records = new List<Record>();
@@ -37,15 +42,26 @@ namespace Recorder
 		 * 
 		 * 
 		 */
-		public Record[] GetEntries() 
+		public List<Record> GetEntries() 
 		{
 				
-			return records.ToArray();
+			return records;
 		
 		}
 		
 		public void AddEntry(Record r)
 		{
+			
+		}
+		
+		private void FireContentChanged()
+		{
+			if(contentChanged != null)
+			{
+				Console.WriteLine("Notifying history changed");
+				contentChanged(this);
+			}
+				
 		}
 		
 		
@@ -68,6 +84,22 @@ namespace Recorder
 				Record r = new Record(fi);
 				records.Add(r);
  			}
+				
+		}
+		
+		public void ScanAndRefresh()
+		{
+			Scan();
+			FireContentChanged();
+		}
+		
+		public void Delete(Record r) 
+		{
+			r.Delete(); // Remove file
+			
+			Scan(); // Rebuild list
+			
+			this.FireContentChanged();
 		}
 		
 		public string GetNextFilename() 
@@ -85,9 +117,7 @@ namespace Recorder
 				
 				i++;
 				
-				
 				string fileName = date + " " + i + ".wav";
-				
 				
 				string basedir = GetPath();
             		//string tmpdir = Path.Combine(basedir, "tmp");

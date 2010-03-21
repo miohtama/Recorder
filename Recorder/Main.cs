@@ -32,26 +32,41 @@ namespace Recorder
 		
 		RecordHistory history;
 		
+		// This is the easy way... fk all those who are against global variables 
+		// TabBar must be pushed through to UIActionSheet in the code
+		// and it would be super cumbersome to pass it around in the code
+		public static AppDelegate appDelegateInstance;
+		
+		
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			AppDelegate.appDelegateInstance = this;
+			
 			recording = false;
 			
 			// Get existing data from the disk
 			// NOTE: must not pass 20 second start-up limit here
 			history = new RecordHistory();
+			
+			// Regenerate history view each time history data is being manipulated 
+			history.contentChanged += delegate(RecordHistory h) { this.recordTableView.ReloadData(); };
+				
 			history.Scan();
 			
 			recordHelper = new RecordHelper(history);
-			
-
-			
+		
 			// If you have defined a view, add it here:
 			window.AddSubview (tabBarController.View);
 			
 			window.MakeKeyAndVisible ();
 			
-			recordButton.TouchDown += delegate { HitRecord(); };
+			// Bind history data with table view
+			// TODO: How to pass data from a parent view to child viewl
+			RecordTableViewController ctl = (RecordTableViewController) recordTVC;
+			ctl.history  = history;
+			
+			recordButton.TouchUpInside += delegate { HitRecord(); };
     				
 			return true;
 		}
@@ -109,7 +124,7 @@ namespace Recorder
 		 * Can be UI initiated or initiated from recording callbacks
 		 * 
 		 */
-		public void FinishRecording()
+		public void FinishRecording(bool save)
 		{
 			recordButton.SetTitle("Record", UIControlState.Normal);
 			recording = false;
@@ -117,6 +132,12 @@ namespace Recorder
 			recordIndicator.Hidden = true;
 			timeLabel.Hidden = true;
 			recordMeter.Progress = 0;
+			
+			// Add new entries to the list
+			if(save)
+			{
+				history.ScanAndRefresh();
+			}
 		}
 		
 		public void UpdateRecordStatus(double time, float power) 
@@ -126,6 +147,17 @@ namespace Recorder
 			
 			// Assume max. 100 dB
 			recordMeter.Progress = (100.0f - power) / 100.0f;
+		}
+		
+		/**
+		 * Needed for UIActionSheets 
+		 * 
+		 * http://stackoverflow.com/questions/1197746/uiactionsheet-cancel-button-strange-behaviour
+		 * 
+		 */
+		public UITabBar GetTabBar()
+		{
+			return this.tabBar;
 		}
 		
 	}

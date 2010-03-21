@@ -15,8 +15,11 @@ namespace Recorder
 		[MonoTouch.Foundation.Register("RecordTableViewController")]
 		public partial class RecordTableViewController : UITableViewController {
 		
+			/* Set by Main when loaded */
+			public RecordHistory history;
+		
 			static NSString kCellIdentifier = new NSString ("MyIdentifier");
-			string[] content;
+			
 			//
 			// Constructor invoked from the NIB loader
 			//
@@ -36,7 +39,7 @@ namespace Recorder
 				
 				public override int RowsInSection (UITableView tableView, int section)
 				{
-					return tvc.content.Length;
+					return tvc.history.GetEntries().Count;
 				}
 		
 				public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -47,7 +50,8 @@ namespace Recorder
 					}
 				
 					// Customize the cell here...
-					cell.TextLabel.Text = tvc.content[indexPath.Row];
+					cell.TextLabel.Text = tvc.history.GetEntries()[indexPath.Row].GetName();
+					cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 					return cell;
 				}
 			}
@@ -56,17 +60,36 @@ namespace Recorder
 			// This class receives notifications that happen on the UITableView
 			//
 			class TableDelegate : UITableViewDelegate {
+				
 				RecordTableViewController tvc;
+				DetailsViewController detailsViewController;
 	
 				public TableDelegate (RecordTableViewController tvc)
 				{
 					this.tvc = tvc;
 				}
 				
+				/**
+				 * User has pressed a row
+				 * 
+				 * Initialize details view based on which row was pressed 
+				 * and populate it with the data from the corresponding history entry.
+				 * 
+				 * Then use navigation controller to push a new view in the stack.
+				 * 
+				 */
 				public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 				{
 					Console.WriteLine ("Recorder: Row selected {0}", indexPath.Row);
-					
+				
+					 if (detailsViewController == null) {
+        						detailsViewController = new DetailsViewController();
+					}
+    			
+					detailsViewController.currentRecord = tvc.history.GetEntries()[indexPath.Row];
+					detailsViewController.history = tvc.history;
+				
+    					tvc.	NavigationController.PushViewController(detailsViewController, true);
 				}
 			}
 			
@@ -74,14 +97,14 @@ namespace Recorder
 			{
 				base.ViewDidLoad ();
 				Title = "History";
-			
-				content = new string[] { "Foo", "Bar" };
 				
 				TableView.Delegate = new TableDelegate (this);
 				TableView.DataSource = new DataSource (this);
+			
 			}
+		 
 			
 	}
 }
 
-	
+	 
