@@ -73,6 +73,7 @@
     <Compile Include="RecordHistory.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="RecordViewController.cs" />
+    <Compile Include="RecordHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

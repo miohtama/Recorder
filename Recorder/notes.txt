@@ -1,24 +1,58 @@
-API reference:
+Tutorials
+-------------------
+
+* http://www.codesnack.com/blog/2009/11/2/uitableviewcontroller-uitvc-template-updated-for-uitableview.html
+
+* http://monotouchexamples.com/ 
+
+API reference
+--------------
 
 http://www.go-mono.com/docs/
 
-How to create a Tab view controller (video tutorial):
+How tos
+---------
 
-http://www.codesnack.com/blog/2009/11/2/uitableviewcontroller-uitvc-template-updated-for-uitableview.html
+How to create a Tab view controller (video tutorial)
+
+* http://www.codesnack.com/blog/2009/11/2/uitableviewcontroller-uitvc-template-updated-for-uitableview.html
 
 About dialogs:
 
-http://www.infoq.com/news/2010/02/MonoTouch-Dialog
+* http://www.infoq.com/news/2010/02/MonoTouch-Dialog
+
+Alert examples:
+
+* http://www.shrinkrays.net/code-snippets/csharp/monotouch-tips-and-snippets.aspx
 
 Adding a button action:
 
-http://monotouch.net/Tutorials/MonoDevelop_HelloWorld
+* http://monotouch.net/Tutorials/MonoDevelop_HelloWorld
 
 Subclassing a view controller:
 
-http://wiki.monotouch.net/HowTo/Creating_and_using_View_Controller_from_another_Interface_Builder_file_in_Main_View
+* http://wiki.monotouch.net/HowTo/Creating_and_using_View_Controller_from_another_Interface_Builder_file_in_Main_View
 
-http://www.knowing.net/index.php/monotouch-custom-viewcontroller-adding-stepwise-subviews/
+* http://www.knowing.net/index.php/monotouch-custom-viewcontroller-adding-stepwise-subviews/
+
+Recording sound 
+
+* http://wiki.monotouch.net/HowTo/Sound/How_to_record_sound_using_the_iPhone_microphone
+
+* http://www.go-mono.com/docs/
+
+Timers
+
+* http://monotouchexamples.com/#16
+
+* http://devrichardagreene.blogspot.com/2009/10/ive-been-trying-out-some-opengl-code-on.html
+
+* http://matt-greer.com/blog/2009/10/sub-millisecond-precision-with-nstimer-and-monotouch/
+
+Handling NSError
+-----------------
+
+* http://www.conceptdevelopment.net/iPhone/MapKit01/Main.cs.htm
 
 Shortcomings
 --------------

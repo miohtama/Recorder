@@ -23,6 +23,10 @@ namespace Recorder {
 		
 		private MonoTouch.UIKit.UIActivityIndicatorView __mt_recordIndicator;
 		
+		private MonoTouch.UIKit.UIProgressView __mt_recordMeter;
+		
+		private MonoTouch.UIKit.UILabel __mt_timeLabel;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("window")]
 		private MonoTouch.UIKit.UIWindow window {
@@ -69,6 +73,30 @@ namespace Recorder {
 			set {
 				this.__mt_recordIndicator = value;
 				this.SetNativeField("recordIndicator", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("recordMeter")]
+		private MonoTouch.UIKit.UIProgressView recordMeter {
+			get {
+				this.__mt_recordMeter = ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("recordMeter")));
+				return this.__mt_recordMeter;
+			}
+			set {
+				this.__mt_recordMeter = value;
+				this.SetNativeField("recordMeter", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("timeLabel")]
+		private MonoTouch.UIKit.UILabel timeLabel {
+			get {
+				this.__mt_timeLabel = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("timeLabel")));
+				return this.__mt_timeLabel;
+			}
+			set {
+				this.__mt_timeLabel = value;
+				this.SetNativeField("timeLabel", value);
 			}
 		}
 	}
