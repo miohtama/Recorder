@@ -1,3 +1,8 @@
+/**
+ * Copyright 2010 mFabrik Research Oy
+ * 
+ * Licensed under GPL 2.
+ */
 
 using System;
 
@@ -29,8 +34,12 @@ namespace Recorder
 		
 		public delegate void UpdateStatus(double seconds, float peakPower);
 
+		public delegate void Finish();
+		
 		// Set this externally to received status updates
 		public UpdateStatus updateStatus;
+		
+		public Finish finish;
 		
 		public static double UPDATE_RATE = 0.25;
 		
@@ -41,7 +50,11 @@ namespace Recorder
 		}
 		
 		
-		public void PrepareRecording ()
+		/**
+		 * @return true on success
+		 * 
+		 */
+		public bool PrepareRecording ()
         {
             NSObject[] values = new NSObject[]
             {    
@@ -65,7 +78,7 @@ namespace Recorder
             
             NSUrl url = NSUrl.FromFilename(audioFilePath);
             
-            recordError = new NSError ();
+            // recordError = new NSError ();
             
             //Set recorder parameters
             recorder = AVAudioRecorder.ToUrl(url, settings, out recordError);
@@ -74,31 +87,40 @@ namespace Recorder
 			if(recorder == null) 
 			{
 				HandleError(recordError);
+				return false;
 			}
 			
 			
             //Set Metering Enabled so you can get the time of the wav file
             recorder.MeteringEnabled = true;
             
-			Console.WriteLine("Starting recording");
+			Console.WriteLine("Preparing recording");
 			
-            recorder.PrepareToRecord();            
+            if(!recorder.PrepareToRecord())
+			{
+				HandleError(recordError);
+				return false;
+			}
             
 			recorder.FinishedRecording += delegate {
                 recorder.Dispose();
-                Console.WriteLine("Done Recording");
+                Console.WriteLine("Recorder finished and disposed");
             };                      
+			
+			return true;
         }
 		
 		
 		public void StartRecording()
 		{
+			Console.WriteLine("Starting recording");
 		
 			timer = NSTimer.CreateRepeatingScheduledTimer(TimeSpan.FromSeconds(UPDATE_RATE), TickTock);
 			
 			if(!recorder.Record()) 
 			{
 				HandleError(recordError);
+				StopRecording(false);
 			}
 		}
 		
@@ -109,10 +131,23 @@ namespace Recorder
 		 */
         public void StopRecording (bool save)
         {
-			timer.Dispose();
+			if(timer != null)
+			{
+				timer.Dispose();
+				timer = null;
+			}
 			
             recorder.Stop();
 			
+			if(!save)
+			{
+				recorder.DeleteRecording();
+			}
+			
+			if(finish != null)
+			{
+				finish();
+			}
 			Console.WriteLine("Recording ended");
         }
 		
@@ -143,13 +178,16 @@ namespace Recorder
 		[Export("TickTock")] 
 	 	void TickTock() 
 	 	{ 
-			Console.WriteLine("Tick " + recorder.currentTime);
 			
 			recorder.UpdateMeters();
 			
+			float power = recorder.PeakPower(0);
+			Console.WriteLine("Tick " + recorder.currentTime + " power:" + power);
+			
+			
 			if(this.updateStatus != null) 
 			{
-				updateStatus(recorder.currentTime, recorder.AveragePower(0));
+				updateStatus(recorder.currentTime, power);
 			}
 	 	}
 	}

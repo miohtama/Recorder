@@ -1,3 +1,8 @@
+/**
+ * Copyright 2010 mFabrik Research Oy
+ * 
+ * Licensed under GPL 2.
+ */
 
 using System;
 using System.Collections.Generic;
@@ -70,38 +75,57 @@ namespace Recorder
 			
 			
 			// Do fancy UI stuff
+		
 			
-			recordButton.SetTitle("Stop Recording", UIControlState.Normal);
-			recording = true;
+			if(recordHelper.PrepareRecording()) 
+			{
 			
-			recordIndicator.Hidden = false;
+				recordHelper.updateStatus = UpdateRecordStatus;
+				recordHelper.finish = FinishRecording;
+				
+				recordButton.SetTitle("Stop Recording", UIControlState.Normal);
+				recording = true;
 			
-			timeLabel.Text = "0 s";
-			timeLabel.Hidden = false;
+				recordIndicator.Hidden = false;
 			
-			recordHelper.PrepareRecording();
+				timeLabel.Text = "0 s";
+				timeLabel.Hidden = false;
 			
-			recordHelper.updateStatus = UpdateRecordStatus;
+				recordHelper.StartRecording();
+			}
 			
-			recordHelper.StartRecording();
 			
 			
 			
 		}
 		
-		public void StopRecord() {
+		public void StopRecord() {			
+			recordHelper.StopRecording(true);
+		}
+		
+		/**
+		 * UI callback for the recorder to stop.
+		 * 
+		 * Can be UI initiated or initiated from recording callbacks
+		 * 
+		 */
+		public void FinishRecording()
+		{
 			recordButton.SetTitle("Record", UIControlState.Normal);
 			recording = false;
 			
 			recordIndicator.Hidden = true;
-			
-			recordHelper.StopRecording(true);
+			timeLabel.Hidden = true;
+			recordMeter.Progress = 0;
 		}
 		
 		public void UpdateRecordStatus(double time, float power) 
 		{
+			// http://stackoverflow.com/questions/1240846/avaudiorecorder-peak-and-average-power
 			timeLabel.Text = (int) time + " s";
-			recordMeter.Progress = 0.5f;
+			
+			// Assume max. 100 dB
+			recordMeter.Progress = (100.0f - power) / 100.0f;
 		}
 		
 	}

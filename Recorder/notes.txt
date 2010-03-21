@@ -49,6 +49,11 @@ Timers
 
 * http://matt-greer.com/blog/2009/10/sub-millisecond-precision-with-nstimer-and-monotouch/
 
+Listing folder
+----------------
+
+* http://www.csharpfriends.com/Articles/getArticle.aspx?articleID=356
+
 Handling NSError
 -----------------
 
@@ -63,4 +68,4 @@ Shortcomings
 
 http://github.com/migueldeicaza/monotouch-samples/blob/46b5ba6050fa1c4768fa35ec94e3dcd90b6b171b/monocatalog/searchbar.cs
 
-* 
+* AVAudioPlayer.PrepareRecording fails, returns false, without error explanation if the filename is bad
