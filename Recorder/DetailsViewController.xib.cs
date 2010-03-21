@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.AVFoundation;
 
 namespace Recorder
 {
@@ -12,6 +13,8 @@ namespace Recorder
 		public Record currentRecord;
 		
 		public RecordHistory history;
+		
+		AVAudioPlayer player;
 		
 		#region Constructors
 
@@ -47,7 +50,21 @@ namespace Recorder
 			Title = "---"; // Will be set later	
 			this.View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 			
+			this.playButton.TouchUpInside += delegate { DoPlay(); };
 			this.deleteButton.TouchUpInside += delegate { DoDelete(); };
+			
+			ButtonHelper.MakeGradientButton(this.playButton);
+			ButtonHelper.MakeGradientButton(this.sendButton);
+			ButtonHelper.MakeGradientButton(this.deleteButton);
+		}
+		
+		public void HandlePlayError()
+		{
+			UIAlertView alert = new UIAlertView();
+			alert.Title = "Error";
+			alert.Message = "Could not start sound player";
+			alert.AddButton("Ok");
+			alert.Show();
 		}
 		
 		public void DoDelete()
@@ -60,22 +77,88 @@ namespace Recorder
 			sheet.CancelButtonIndex = 1;
 			
 			sheet.Clicked += delegate(object s, UIButtonEventArgs e) {
-				PerformDelete();
-				
-				this.NavigationController.PopViewControllerAnimated(true);
+				if(e.ButtonIndex == 0)
+				{
+					PerformDelete();
+					this.NavigationController.PopViewControllerAnimated(true);
+				}
 			};
 			
 			sheet.Canceled += delegate(object sender, EventArgs e) {
+				// NOTE: Never called...
+				// Event handler is not working?
 				Console.WriteLine("Cancelled");
 			};
 			
+			
+			ShowSheet(sheet);
+		}
+		
+		/**
+		 * 
+		 * 
+		 */
+		private void ShowSheet(UIActionSheet sheet)
+		{
+			// Need to make assumption about underlying views
+			// Bad design by Apple...
 			UIViewController parent = this.ParentViewController.ParentViewController;
-			UITabBarController tabBarController  = parent as UITabBarController;
-			sheet.ShowFromTabBar((UITabBar) tabBarController.View);
+			UITabBarController tabBarController  = (UITabBarController) parent;
+			sheet.ShowFromTabBar(tabBarController.TabBar);
 			
 			// BUGGY http://stackoverflow.com/questions/1197746/uiactionsheet-cancel-button-strange-behaviour
 			// sheet.ShowInView(this.View);
+		}
+		
+		/**
+		 * Open an action sheet for the duration of the sound clip play with the option 
+		 * to stop the playing
+		 * 
+		 */
+		public void DoPlay()
+		{
 			
+			var mediaFile = NSUrl.FromFilename(this.currentRecord.GetPath());
+			
+			Console.WriteLine("Playing file " + mediaFile.AbsoluteUrl);
+			
+			this.player = AVAudioPlayer.FromUrl(mediaFile);
+			
+			// This can happen if URL is screwed up
+			if(player == null)
+			{
+				HandlePlayError();
+				return;
+			}
+			
+			UIActionSheet sheet = new UIActionSheet();
+			sheet.Title = "Playing";
+			sheet.AddButton("Stop");
+			
+			sheet.Clicked += delegate(object s, UIButtonEventArgs e) {
+				Console.WriteLine("Stopping");
+				player.Stop();
+			};
+			
+			ShowSheet(sheet);
+			
+			if(!player.PrepareToPlay())
+			{
+				Console.WriteLine("Player prearing failed");
+				HandlePlayError();
+				return;
+			}
+			
+			// Destroy player and close dialog when the sound clip ends
+			player.FinishedPlaying += delegate { 
+				sheet.DismissWithClickedButtonIndex(0, true);
+				this.player.Dispose(); 
+			};	
+			
+			if(!player.Play())
+			{
+				HandlePlayError();
+			}
 		}
 		
 		public void PerformDelete()

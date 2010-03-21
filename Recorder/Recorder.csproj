@@ -80,6 +80,7 @@
     <Compile Include="DetailsViewController.xib.designer.cs">
       <DependentUpon>DetailsViewController.xib</DependentUpon>
     </Compile>
+    <Compile Include="ButtonHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -93,5 +94,11 @@
   </ProjectExtensions>
   <ItemGroup>
     <None Include="notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\uiglassbutton-template.png" />
   </ItemGroup>
 </Project>

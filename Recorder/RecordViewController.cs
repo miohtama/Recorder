@@ -26,7 +26,8 @@ namespace Recorder
 			Title = "Record";
 			
 			this.View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
-		
+			
+			
 		}
 	}
 }

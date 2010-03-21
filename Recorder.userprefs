@@ -2,23 +2,27 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Recorder/Main.cs" ctype="Workbench">
     <Files>
-      <File FileName="Recorder/notes.txt" Line="35" Column="1" />
-      <File FileName="Recorder/Main.cs" Line="45" Column="33" />
+      <File FileName="Recorder/notes.txt" Line="1" Column="1" />
+      <File FileName="Recorder/Main.cs" Line="55" Column="32" />
       <File FileName="Recorder/RecordTableViewController.cs" Line="20" Column="3" />
-      <File FileName="Recorder/RecordHistory.cs" Line="71" Column="4" />
-      <File FileName="Recorder/Record.cs" Line="16" Column="14" />
+      <File FileName="Recorder/RecordHistory.cs" Line="1" Column="1" />
+      <File FileName="Recorder/Record.cs" Line="1" Column="1" />
       <File FileName="Recorder/RecoredView.xib.cs" Line="1" Column="1" />
-      <File FileName="Recorder/RecordHelper.cs" Line="184" Column="36" />
-      <File FileName="Assembly Browser" />
-      <File FileName="Recorder/RecordViewController.cs" Line="6" Column="1" />
-      <File FileName="Recorder/DetailsViewController.xib.cs" Line="8" Column="19" />
+      <File FileName="Recorder/RecordHelper.cs" Line="1" Column="1" />
+      <File FileName="Recorder/RecordViewController.cs" Line="30" Column="4" />
+      <File FileName="Recorder/DetailsViewController.xib.cs" Line="40" Column="21" />
+      <File FileName="Recorder/ButtonHelper.cs" Line="44" Column="63" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Recorder" expanded="True">
-            <Node name="Main.cs" selected="True" />
-            <Node name="MainWindow.xib" expanded="True" />
+            <Node name="resources" expanded="True">
+              <Option id="ShowVersionControlOverlays" value="True" />
+              <Option id="ShowAllFiles" value="True" />
+            </Node>
+            <Node name="DetailsViewController.xib" expanded="True" />
+            <Node name="MainWindow.xib" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>

@@ -25,6 +25,12 @@ namespace Recorder
 			return this.fi.Name;
 		}
 		
+		public string GetPath()
+		{
+			return this.fi.FullName;
+		}
+		                   
+		
 		public double GetLength()
 		{
 			return 0.0;

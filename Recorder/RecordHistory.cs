@@ -114,10 +114,19 @@ namespace Recorder
 			// Iterate until we find a free filename slot
 			int i = 0;
 			do {
+			
+				string fillerChar;
 				
-				i++;
+				if(i < 25)
+				{
+					char c = (char) ('a' + i);
+					fillerChar = c.ToString();
+				} else {
+					// run out of alphabets
+					fillerChar = "" + i;
+				}
 				
-				string fileName = date + " " + i + ".wav";
+				string fileName = date + " " + fillerChar + ".wav";
 				
 				string basedir = GetPath();
             		//string tmpdir = Path.Combine(basedir, "tmp");
@@ -125,6 +134,8 @@ namespace Recorder
 				audioFilePath = Path.Combine(basedir, fileName);
             
 				Console.WriteLine("Testing file:" + audioFilePath);
+				
+				i++;
 				
 			} while(File.Exists(audioFilePath));
 			

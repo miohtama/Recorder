@@ -2,6 +2,9 @@
  * Copyright 2010 mFabrik Research Oy
  * 
  * Licensed under GPL 2.
+ * 
+ * http://mfabrik.com
+ * 
  */
 
 using System;

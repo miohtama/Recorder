@@ -47,7 +47,15 @@ Recording sound
 
 * http://www.go-mono.com/docs/
 
+Playing sound
+==============
+
+* http://stackoverflow.com/questions/1757768/playing-a-sound-with-monotouch
+
+* http://wiki.monotouch.net/HowTo/Sound/Play_a_Sound_or_Alert
+
 Timers
+=======
 
 * http://monotouchexamples.com/#16
 
@@ -80,6 +88,11 @@ Formatting number strings
 --------------------------
 
 * http://www.geekpedia.com/KB10_How-can-I-format-a-number-to-x-decimal-places.html
+
+Character codes
+----------------
+
+* http://bytes.com/topic/c-sharp/answers/441566-c-equivilent-asc-chr
 
 Shortcomings
 --------------

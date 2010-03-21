@@ -31,18 +31,11 @@ namespace Recorder
 		RecordHelper recordHelper;
 		
 		RecordHistory history;
-		
-		// This is the easy way... fk all those who are against global variables 
-		// TabBar must be pushed through to UIActionSheet in the code
-		// and it would be super cumbersome to pass it around in the code
-		public static AppDelegate appDelegateInstance;
-		
-		
+			
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			AppDelegate.appDelegateInstance = this;
-			
+		
 			recording = false;
 			
 			// Get existing data from the disk
@@ -67,6 +60,7 @@ namespace Recorder
 			ctl.history  = history;
 			
 			recordButton.TouchUpInside += delegate { HitRecord(); };
+			ButtonHelper.MakeGradientButton(recordButton);
     				
 			return true;
 		}
@@ -149,16 +143,7 @@ namespace Recorder
 			recordMeter.Progress = (100.0f - power) / 100.0f;
 		}
 		
-		/**
-		 * Needed for UIActionSheets 
-		 * 
-		 * http://stackoverflow.com/questions/1197746/uiactionsheet-cancel-button-strange-behaviour
-		 * 
-		 */
-		public UITabBar GetTabBar()
-		{
-			return this.tabBar;
-		}
+
 		
 	}
 }
